@@ -84,9 +84,35 @@ public class SongUtils {
         return null;
     }
 
-    public static Song findMostPopular(Song [] songs){
-        // todo: ADD findMostPopular() LOGIC
-        throw new UnsupportedOperationException("Not implemented yet");
+    /**
+     * Finds the song with the highest rating.
+     *
+     * @param songs the array of songs to search
+     * @return the most popular song, or null if the array is empty
+     * @author Niharika
+     */
+    public static Song findMostPopular(Song[] songs) {
+
+        if (songs == null || songs.length == 0) {
+            return null;
+        }
+
+        Song mostPopular = null;
+
+        // Find the song with the highest rating
+        for (int i = 0; i < songs.length; i++) {
+
+            if (songs[i] != null) {
+
+                if (mostPopular == null ||
+                        songs[i].getRating() > mostPopular.getRating()) {
+
+                    mostPopular = songs[i];
+                }
+            }
+        }
+
+        return mostPopular;
     }
 
     public static void sortSongsBySongTitle(Song [] songs){
