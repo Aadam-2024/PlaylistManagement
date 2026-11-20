@@ -181,11 +181,48 @@ public class SongUtils {
     }
 
     /**
-     * Returns the most frequently occurring candidate tag across the songs.
-     * Ignore case; break ties in favour of the LAST candidate; return null if none match.
+     * Finds the most common candidate tag across all songs.
+     * Ignores case and returns the last candidate in case of a tie.
+     *
+     * @param songs the array of songs to search
+     * @param candidateTags the candidate tags to compare
+     * @return the most common tag, or null if none are found
+     * @author Niharika
      */
-    public static String findMostCommonTag(Song [] songs, String[] candidateTags){
-        // todo: ADD findMostCommonTag() LOGIC
-        throw new UnsupportedOperationException("Not implemented yet");
+    public static String findMostCommonTag(Song[] songs, String[] candidateTags) {
+
+        if (songs == null || candidateTags == null) {
+            return null;
+        }
+
+        String mostCommonTag = null;
+        int highestCount = 0;
+
+        // Check each candidate tag
+        for (int i = 0; i < candidateTags.length; i++) {
+
+            if (candidateTags[i] == null) {
+                continue;
+            }
+
+            int count = 0;
+
+            // Count how many songs contain this tag
+            for (int j = 0; j < songs.length; j++) {
+
+                if (songs[j] != null &&
+                        songs[j].containsTag(candidateTags[i])) {
+                    count++;
+                }
+            }
+
+            // >= ensures the last candidate wins in a tie
+            if (count >= highestCount && count > 0) {
+                highestCount = count;
+                mostCommonTag = candidateTags[i];
+            }
+        }
+
+        return mostCommonTag;
     }
 }
