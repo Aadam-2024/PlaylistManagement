@@ -118,10 +118,53 @@ public class Song {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
-    public boolean containsTag(String tag){
-        // todo: ADD containsTag() LOGIC
-        // Should implement binary search
-        throw new UnsupportedOperationException("Not implemented yet");
+    /**
+     * Searches for a tag using binary search.
+     *
+     * @param tag the tag to search for
+     * @return true if the tag exists, otherwise false
+     * @author Niharika
+     */
+    public boolean containsTag(String tag) {
+
+        if (tag == null) {
+            return false;
+        }
+
+        // Sort tags alphabetically, ignoring case
+        for (int i = 1; i < tagCount; i++) {
+
+            String currentTag = tags[i];
+            int j = i - 1;
+
+            while (j >= 0 && tags[j].compareToIgnoreCase(currentTag) > 0) {
+                tags[j + 1] = tags[j];
+                j--;
+            }
+
+            tags[j + 1] = currentTag;
+        }
+
+        // Binary search
+        int low = 0;
+        int high = tagCount - 1;
+
+        while (low <= high) {
+
+            int mid = low + (high - low) / 2;
+
+            int comparison = tags[mid].compareToIgnoreCase(tag);
+
+            if (comparison == 0) {
+                return true;
+            } else if (comparison < 0) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        return false;
     }
 
     public String format(){
