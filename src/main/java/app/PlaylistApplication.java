@@ -122,8 +122,30 @@ public class PlaylistApplication {
                     break;
 
                 case "7":
-                    // Student B: select a song and remove a tag.
+                    System.out.print("Enter the song title: ");
+                    String titleToRemoveFrom = input.nextLine();
+
+                    // Sort songs before performing binary search
+                    SongUtils.sortSongsBySongTitle(songs);
+
+                    Song songToRemoveFrom = SongUtils.searchBySongTitle(
+                            songs, titleToRemoveFrom);
+
+                    if (songToRemoveFrom == null) {
+                        System.out.println("Song not found.");
+                    } else {
+                        System.out.print("Enter the tag to remove: ");
+                        String tagToRemove = input.nextLine();
+
+                        if (songToRemoveFrom.removeTag(tagToRemove)) {
+                            System.out.println("Tag removed successfully.");
+                            System.out.println(songToRemoveFrom.format());
+                        } else {
+                            System.out.println("Tag not found in this song.");
+                        }
+                    }
                     break;
+
                 case "8":
                     // Student A: find and display the most popular song.
                     break;
