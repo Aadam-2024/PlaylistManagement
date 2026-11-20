@@ -115,12 +115,34 @@ public class SongUtils {
         return mostPopular;
     }
 
-    public static void sortSongsBySongTitle(Song [] songs){
-        // todo: ADD sortSongsBySongTitle() LOGIC
-        // Should implement for-loop based bubble sort
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
+    /**
+     * Sorts songs alphabetically by title using Bubble Sort.
+     *
+     * @param songs the array of songs to sort
+     * @author Niharika
+     */
+    public static void sortSongsBySongTitle(Song[] songs) {
 
+        if (songs == null || songs.length < 2) {
+            return;
+        }
+
+        // Bubble Sort
+        for (int i = 0; i < songs.length - 1; i++) {
+
+            for (int j = 0; j < songs.length - 1 - i; j++) {
+
+                if (songs[j].getTitle()
+                        .compareToIgnoreCase(songs[j + 1].getTitle()) > 0) {
+
+                    // Swap the two songs
+                    Song temp = songs[j];
+                    songs[j] = songs[j + 1];
+                    songs[j + 1] = temp;
+                }
+            }
+        }
+    }
     public static void sortSongsByNumTags(Song [] songs){
         // todo: ADD sortSongsByNumTags() LOGIC
         // Should implement selection sort
