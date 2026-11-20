@@ -8,13 +8,44 @@ import business.Song;
  */
 public class SongUtils {
     /**
-     * Returns every song containing the requested tag (case-insensitive).
-     * Use a linear scan and Song.containsTag(); return an empty array if none match.
+     * Returns every song containing the requested tag.
+     *
+     * @param songs the array of songs to search
+     * @param tag the tag to search for
+     * @return an array containing all matching songs
+     * @author Niharika
      */
-    public static Song[] searchByTag(Song [] songs, String tag){
-        // todo: ADD searchByTag() LOGIC
-        // Should implement linear search, but not for a single result
-        throw new UnsupportedOperationException("Not implemented yet");
+    public static Song[] searchByTag(Song[] songs, String tag) {
+
+        if (songs == null || tag == null) {
+            return new Song[0];
+        }
+
+        // First pass: count matching songs
+        int count = 0;
+
+        for (int i = 0; i < songs.length; i++) {
+
+            if (songs[i] != null && songs[i].containsTag(tag)) {
+                count++;
+            }
+        }
+
+        // Create an array of the exact required size
+        Song[] results = new Song[count];
+
+        // Second pass: store matching songs
+        int index = 0;
+
+        for (int i = 0; i < songs.length; i++) {
+
+            if (songs[i] != null && songs[i].containsTag(tag)) {
+                results[index] = songs[i];
+                index++;
+            }
+        }
+
+        return results;
     }
 
     /**
