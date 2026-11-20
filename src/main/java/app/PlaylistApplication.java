@@ -79,8 +79,24 @@ public class PlaylistApplication {
                     break;
 
                 case "5":
-                    // Student B: sort by title before searching for a song by title.
+                    System.out.print("Enter the song title to search for: ");
+                    String songTitle = input.nextLine();
+
+                    // Sort songs before performing binary search
+                    SongUtils.sortSongsBySongTitle(songs);
+
+                    Song foundSong = SongUtils.searchBySongTitle(songs, songTitle);
+
+                    if (foundSong == null) {
+                        System.out.println("Song not found.");
+                    } else {
+                        System.out.println("Song found:");
+                        System.out.println("--------------------");
+                        System.out.println(foundSong.format());
+                        System.out.println("--------------------");
+                    }
                     break;
+
                 case "6":
                     // Student A: select a song and add a tag.
                     break;
