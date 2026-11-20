@@ -59,8 +59,25 @@ public class PlaylistApplication {
                     break;
 
                 case "4":
-                    // Student A: search for songs with a specified tag and display matches.
+                    System.out.print("Enter a tag to search for: ");
+                    String tag = input.nextLine();
+
+                    Song[] matchingSongs = SongUtils.searchByTag(songs, tag);
+
+                    if (matchingSongs.length == 0) {
+                        System.out.println("No songs found with that tag.");
+                    } else {
+                        System.out.println("Songs containing tag: " + tag);
+
+                        for (Song song : matchingSongs) {
+                            System.out.println("--------------------");
+                            System.out.println(song.format());
+                        }
+
+                        System.out.println("--------------------");
+                    }
                     break;
+
                 case "5":
                     // Student B: sort by title before searching for a song by title.
                     break;
