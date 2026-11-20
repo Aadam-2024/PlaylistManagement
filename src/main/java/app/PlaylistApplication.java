@@ -48,8 +48,16 @@ public class PlaylistApplication {
                     break;
 
                 case "3":
-                    // Student B: sort by number of tags and display the playlist.
+                    SongUtils.sortSongsByNumTags(songs);
+
+                    for (Song song : songs) {
+                        System.out.println("--------------------");
+                        System.out.println(song.format());
+                    }
+
+                    System.out.println("--------------------");
                     break;
+
                 case "4":
                     // Student A: search for songs with a specified tag and display matches.
                     break;
