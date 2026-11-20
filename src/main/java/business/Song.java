@@ -147,11 +147,46 @@
             return true;
         }
 
-        public boolean removeTag(String tag){
-            // todo: ADD removeTag() LOGIC
-            // Should implement APPROPRIATE delete action
-            // Question to ask yourself: Which is more appropriate here - overwrite or shift?
-            throw new UnsupportedOperationException("Not implemented yet");
+        /**
+         * Removes a tag from the song.
+         *
+         * @param tag the tag to remove
+         * @return true if the tag was removed, otherwise false
+         * @author Niharika
+         */
+        public boolean removeTag(String tag) {
+
+            if (tag == null) {
+                return false;
+            }
+
+            // Find the tag
+            int index = -1;
+
+            for (int i = 0; i < tagCount; i++) {
+
+                if (tags[i].equalsIgnoreCase(tag)) {
+                    index = i;
+                    break;
+                }
+            }
+
+            // Tag not found
+            if (index == -1) {
+                return false;
+            }
+
+            // Shift remaining tags to the left
+            for (int i = index; i < tagCount - 1; i++) {
+                tags[i] = tags[i + 1];
+            }
+
+            // Remove the last duplicate reference
+            tags[tagCount - 1] = null;
+
+            tagCount--;
+
+            return true;
         }
 
         /**
