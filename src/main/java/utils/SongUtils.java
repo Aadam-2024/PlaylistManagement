@@ -143,10 +143,41 @@ public class SongUtils {
             }
         }
     }
-    public static void sortSongsByNumTags(Song [] songs){
-        // todo: ADD sortSongsByNumTags() LOGIC
-        // Should implement selection sort
-        throw new UnsupportedOperationException("Not implemented yet");
+    /**
+     * Sorts songs by number of tags in descending order using Selection Sort.
+     *
+     * @param songs the array of songs to sort
+     * @author Niharika
+     */
+    public static void sortSongsByNumTags(Song[] songs) {
+
+        if (songs == null || songs.length < 2) {
+            return;
+        }
+
+        // Selection Sort
+        for (int i = 0; i < songs.length - 1; i++) {
+
+            int maxIndex = i;
+
+            // Find the song with the highest number of tags
+            for (int j = i + 1; j < songs.length; j++) {
+
+                if (songs[j].getTagCount() >
+                        songs[maxIndex].getTagCount()) {
+
+                    maxIndex = j;
+                }
+            }
+
+            // Swap the songs
+            if (maxIndex != i) {
+
+                Song temp = songs[i];
+                songs[i] = songs[maxIndex];
+                songs[maxIndex] = temp;
+            }
+        }
     }
 
     /**
