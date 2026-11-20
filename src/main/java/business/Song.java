@@ -9,7 +9,7 @@
         private String album;
         private double rating;
         private String genre;
-        private String [] tags;
+        private String[] tags;
         private int tagCount;
 
         public Song(String title, String artist, String album, double rating, String genre, String[] tags) {
@@ -238,8 +238,30 @@
             return false;
         }
 
-        public String format(){
-            // todo: ADD format() LOGIC
-            throw new UnsupportedOperationException("Not implemented yet");
+        /**
+         * Returns the song details in a readable format.
+         *
+         * @return formatted song details
+         * @author Niharika
+         */
+        public String format() {
+
+            String formattedSong = "Title: " + title +
+                    "\nArtist: " + artist +
+                    "\nAlbum: " + album +
+                    "\nRating: " + rating +
+                    "\nGenre: " + genre +
+                    "\nTags: ";
+
+            for (int i = 0; i < tagCount; i++) {
+
+                formattedSong += tags[i];
+
+                if (i < tagCount - 1) {
+                    formattedSong += ", ";
+                }
+            }
+
+            return formattedSong;
         }
     }
