@@ -25,7 +25,15 @@ public class PlaylistApplication {
             String choice = input.nextLine();
             switch (choice) {
                 case "1":
-                    // Student A: display all songs using Song.format().
+                    if (songs.length == 0) {
+                        System.out.println("No songs found in the playlist.");
+                    } else {
+                        for (Song song : songs) {
+                            System.out.println("--------------------");
+                            System.out.println(song.format());
+                        }
+                        System.out.println("--------------------");
+                    }
                     break;
                 case "2":
                     // Student B: sort by song title and display the playlist.
