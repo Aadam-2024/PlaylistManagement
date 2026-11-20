@@ -160,8 +160,25 @@ public class PlaylistApplication {
                     break;
 
                 case "9":
-                    // Student B: supply candidate tags and find the most common tag.
+                    System.out.print("How many candidate tags do you want to enter? ");
+                    int numberOfTags = Integer.parseInt(input.nextLine());
+
+                    String[] candidateTags = new String[numberOfTags];
+
+                    for (int i = 0; i < numberOfTags; i++) {
+                        System.out.print("Enter candidate tag " + (i + 1) + ": ");
+                        candidateTags[i] = input.nextLine();
+                    }
+
+                    String commonTag = SongUtils.findMostCommonTag(songs, candidateTags);
+
+                    if (commonTag == null) {
+                        System.out.println("None of the candidate tags were found.");
+                    } else {
+                        System.out.println("Most common candidate tag: " + commonTag);
+                    }
                     break;
+
                 case "0":
                     running = false;
                     break;
