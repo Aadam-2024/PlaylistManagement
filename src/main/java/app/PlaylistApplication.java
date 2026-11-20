@@ -35,9 +35,18 @@ public class PlaylistApplication {
                         System.out.println("--------------------");
                     }
                     break;
+
                 case "2":
-                    // Student B: sort by song title and display the playlist.
+                    SongUtils.sortSongsBySongTitle(songs);
+
+                    for (Song song : songs) {
+                        System.out.println("--------------------");
+                        System.out.println(song.format());
+                    }
+
+                    System.out.println("--------------------");
                     break;
+
                 case "3":
                     // Student B: sort by number of tags and display the playlist.
                     break;
