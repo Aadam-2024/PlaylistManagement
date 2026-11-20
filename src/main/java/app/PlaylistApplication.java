@@ -98,8 +98,29 @@ public class PlaylistApplication {
                     break;
 
                 case "6":
-                    // Student A: select a song and add a tag.
+                    System.out.print("Enter the song title: ");
+                    String titleToEdit = input.nextLine();
+
+                    // Sort songs before performing binary search
+                    SongUtils.sortSongsBySongTitle(songs);
+
+                    Song songToEdit = SongUtils.searchBySongTitle(songs, titleToEdit);
+
+                    if (songToEdit == null) {
+                        System.out.println("Song not found.");
+                    } else {
+                        System.out.print("Enter the new tag: ");
+                        String newTag = input.nextLine();
+
+                        if (songToEdit.addTag(newTag)) {
+                            System.out.println("Tag added successfully.");
+                            System.out.println(songToEdit.format());
+                        } else {
+                            System.out.println("Tag could not be added. It may already exist or be invalid.");
+                        }
+                    }
                     break;
+
                 case "7":
                     // Student B: select a song and remove a tag.
                     break;
