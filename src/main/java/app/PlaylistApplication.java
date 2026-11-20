@@ -147,8 +147,18 @@ public class PlaylistApplication {
                     break;
 
                 case "8":
-                    // Student A: find and display the most popular song.
+                    Song mostPopular = SongUtils.findMostPopular(songs);
+
+                    if (mostPopular == null) {
+                        System.out.println("No songs available in the playlist.");
+                    } else {
+                        System.out.println("Most popular song:");
+                        System.out.println("--------------------");
+                        System.out.println(mostPopular.format());
+                        System.out.println("--------------------");
+                    }
                     break;
+
                 case "9":
                     // Student B: supply candidate tags and find the most common tag.
                     break;
