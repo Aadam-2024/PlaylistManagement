@@ -49,13 +49,39 @@ public class SongUtils {
     }
 
     /**
-     * Binary-searches a song array already sorted by title (case-insensitive).
-     * Returns the matching Song, or null if not found.
+     * Searches for a song by title using binary search.
+     *
+     * @param songs the array of songs sorted by title
+     * @param songTitle the title to search for
+     * @return the matching song, or null if not found
+     * @author Niharika
      */
-    public static Song searchBySongTitle(Song [] songs, String songTitle){
-        // todo: ADD searchBySongTitle() LOGIC
-        // Should implement binary search
-        throw new UnsupportedOperationException("Not implemented yet");
+    public static Song searchBySongTitle(Song[] songs, String songTitle) {
+
+        if (songs == null || songTitle == null) {
+            return null;
+        }
+
+        int low = 0;
+        int high = songs.length - 1;
+
+        while (low <= high) {
+
+            int mid = low + (high - low) / 2;
+
+            int comparison = songs[mid].getTitle()
+                    .compareToIgnoreCase(songTitle);
+
+            if (comparison == 0) {
+                return songs[mid];
+            } else if (comparison < 0) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        return null;
     }
 
     public static Song findMostPopular(Song [] songs){
